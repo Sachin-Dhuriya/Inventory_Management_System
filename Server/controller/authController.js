@@ -1,19 +1,21 @@
 import bcrypt from 'bcrypt';
 import pool from '../config/db.js';
 import jwt from 'jsonwebtoken'
+import { signupSchema, loginSchema } from '../validators/authValidators.js';
+
 
 export const userRegister = async (req, res) => {
     try {
-        let { username, email, password } = req.body;
-
-        if (!username || !email || !password) {
-            return res.status(400).json({ message: "All Fields are required..!!!!" })
+        const {error} = signupSchema.validate(req.body);
+        if(error){
+            return res.status(400).json({message: error.details[0].message})
         }
+
+        let { username, email, password } = req.body;
 
         const existingUser = await pool.query(
             `SELECT * FROM users WHERE username = $1 OR email = $2`, [username, email]
         )
-
         if (existingUser.rows.length > 0) {
             return res.status(400).json({ message: "Username or Email already exist..!!!" })
         }
@@ -40,11 +42,12 @@ export const userRegister = async (req, res) => {
 
 export const userLogin = async (req, res) => {
     try {
-        let { email, password } = req.body;
-
-        if (!email || !password) {
-            return res.status(400).json({ message: "All fields are required..!!!" })
+        const {error} = loginSchema.validate(req.body);
+        if(error){
+            return res.status(400).json({message: error.details[0].message})
         }
+
+        let { email, password } = req.body;
 
         let data = await pool.query(`SELECT * FROM users WHERE email = $1`, [email])
 

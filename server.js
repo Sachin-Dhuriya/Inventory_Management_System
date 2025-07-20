@@ -4,6 +4,12 @@ const app = express();
 //-------------------------------------.ENV Setup----------------------------------------------------
 import dotenv from 'dotenv'
 dotenv.config()
+//-------------------------------------Data parsing----------------------------------------------------
+import cors from 'cors';
+//-------------------------------------Data parsing----------------------------------------------------
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+
 //--------------------------------------DATABASE Connection-------------------------------------------
 import pool from './config/db.js'
 
@@ -16,12 +22,13 @@ import pool from './config/db.js'
         console.error('Database Connection Failed...!!!', err)
     }
 })();
-//-----------------------------------------------------------------------------------------------------------
 
-
+//--------------------------------------Middlewares-------------------------------------------
+app.use(cors());
 
 //--------------API-------------------
-
+import authRoutes from './routes/authRoutes.js'
+app.use('/api/auth', authRoutes)
 
 
 

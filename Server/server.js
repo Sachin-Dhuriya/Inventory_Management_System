@@ -30,6 +30,9 @@ app.use(cors());
 import authRoutes from './routes/authRoutes.js'
 app.use('/api/auth', authRoutes)
 
+import productRoutes from './routes/productRoutes.js'
+app.use('/api/product',productRoutes)
+
 
 
 app.listen(process.env.PORT,()=>{

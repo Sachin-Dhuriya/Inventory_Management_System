@@ -1,0 +1,50 @@
+/* Navbar.css */
+
+.navbar {
+  position: fixed;           /* Always on top */
+  top: 0;
+  left: 0;
+  width: 98%;              /* Full width */
+  height: 60px;             /* Adjust as needed */
+  background-color: #0f172a; /* Dark slate background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional subtle shadow */
+  z-index: 1000;           /* Ensure it stays on top of other content */
+}
+
+.navbar-logo a {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin-left: 20px;
+}
+
+.navbar-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #38bdf8; /* Tailwind's sky-400 for hover effect */
+}
+
+/* Optional: Add space below navbar in main content to avoid hiding */
+body {
+  padding-top: 60px; /* equal to navbar height */
+}

@@ -22,7 +22,7 @@ export const createProduct = async(req,res)=>{
             [name, description, price, quantity]
         )
 
-        res.status(200).json({message: 'Product Added',product:  productData.rows[0]})
+        res.status(201).json({message: 'Product Added',product:  productData.rows[0]})
         
     } catch (err) {
         console.error(err)

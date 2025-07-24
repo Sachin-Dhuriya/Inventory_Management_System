@@ -26,12 +26,16 @@ import pool from './config/db.js'
 //--------------------------------------Middlewares-------------------------------------------
 app.use(cors());
 
-//--------------API-------------------
+//--------------------------------------  API-Routes  --------------------------------------------------
+//-------------Auth API-------------------
 import authRoutes from './routes/authRoutes.js'
 app.use('/api/auth', authRoutes)
-
+//-------------Product API-------------------
 import productRoutes from './routes/productRoutes.js'
 app.use('/api/product',productRoutes)
+//-------------Supplier API--------------
+import supplierRoutes from './routes/supplierRoutes.js'
+app.use('/api/supplier', supplierRoutes)
 
 
 

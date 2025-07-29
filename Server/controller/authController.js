@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import pool from '../config/db.js';
 import jwt from 'jsonwebtoken'
 import { signupSchema, loginSchema } from '../validators/authValidators.js';
 import authService from '../services/authService.js';

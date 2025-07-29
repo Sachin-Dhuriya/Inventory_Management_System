@@ -36,7 +36,9 @@ app.use('/api/product',productRoutes)
 //-------------Supplier API--------------
 import supplierRoutes from './routes/supplierRoutes.js'
 app.use('/api/supplier', supplierRoutes)
-
+//------------PurchaseOrder API-----------
+import purchaseOrder from './routes/purchaseOrder.js'
+app.use('/api/po', purchaseOrder)
 
 
 app.listen(process.env.PORT,()=>{

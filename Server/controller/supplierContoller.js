@@ -1,5 +1,4 @@
 import suppliersValidation from '../validators/supplierValidator.js';
-import pool from '../config/db.js'
 import supplierServices from '../services/supplierServices.js';
 
 export const allSuppliers = async(req,res)=>{

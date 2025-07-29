@@ -1,5 +1,4 @@
 import productSchema from '../validators/productValidator.js'
-import pool from '../config/db.js'
 import productService from '../services/productService.js'
 
 export const createProduct = async (req, res) => {

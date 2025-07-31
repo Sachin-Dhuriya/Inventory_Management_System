@@ -37,11 +37,11 @@ This system provides secure **JWT-based authentication** and **role-based access
 
 | Method | Endpoint | Description | Access |
 |--------|----------|--------------|--------|
-| GET | `/api/products` | Get all products | Authenticated |
-| GET | `/api/products/:id` | Get product by ID | Authenticated |
-| POST | `/api/products` | Create new product | Admin only |
-| PUT | `/api/products/:id` | Update product | Admin only |
-| DELETE | `/api/products/:id` | Delete product | Admin only |
+| GET | `/api/product` | Get all products | Authenticated |
+| GET | `/api/product/:id` | Get product by ID | Authenticated |
+| POST | `/api/product` | Create new product | Admin only |
+| PUT | `/api/product/:id` | Update product | Admin only |
+| DELETE | `/api/product/:id` | Delete product | Admin only |
 
 ---
 
@@ -49,11 +49,11 @@ This system provides secure **JWT-based authentication** and **role-based access
 
 | Method | Endpoint | Description | Access |
 |--------|----------|--------------|--------|
-| GET | `/api/suppliers` | List suppliers | Authenticated |
-| GET | `/api/suppliers/:id` | Supplier details | Authenticated |
-| POST | `/api/suppliers` | Create supplier | Admin only |
-| PUT | `/api/suppliers/:id` | Update supplier | Admin only |
-| DELETE | `/api/suppliers/:id` | Delete supplier | Admin only |
+| GET | `/api/supplier` | List suppliers | Authenticated |
+| GET | `/api/supplier/:id` | Supplier details | Authenticated |
+| POST | `/api/supplier` | Create supplier | Admin only |
+| PUT | `/api/supplier/:id` | Update supplier | Admin only |
+| DELETE | `/api/supplier/:id` | Delete supplier | Admin only |
 
 ---
 
@@ -61,9 +61,11 @@ This system provides secure **JWT-based authentication** and **role-based access
 
 | Method | Endpoint | Description | Access |
 |--------|----------|--------------|--------|
-| GET | `/api/purchases` | List purchase orders | Authenticated |
-| POST | `/api/purchases` | Create purchase order | Authenticated |
-| GET | `/api/purchases/:id` | Purchase order details | Authenticated |
+| GET | `/api/po` | List purchase orders | Authenticated |
+| POST | `/api/po` | Create purchase order | Authenticated |
+| GET | `/api/po/:id` | Purchase order details | Authenticated |
+| PUT | `/api/po/:id` | Update purchase order details | Authenticated |
+| DELETE | `/api/po/:id` | Delete purchase order  | Authenticated |
 
 ---
 

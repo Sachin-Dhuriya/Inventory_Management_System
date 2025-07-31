@@ -44,6 +44,21 @@ async function findPurchaseOrderByID(id) {
     )
 }
 
-export default{
-    createNewPurchaseOrder,getPurchaseOrder, findPurchaseOrderByID
+async function deletePurchaseOrderById(id) {
+    return await pool.query(
+        `DELETE FROM purchaseorder WHERE id = $1 RETURNING product_id, supplier_id, quantity, purchase_date`, [id]
+    )
+}
+
+async function updatePurchaseOrderById(id, product_id, supplier_id, quantity) {
+    return await pool.query(
+        `UPDATE purchaseorder
+         SET product_id = $1, supplier_id = $2, quantity = $3
+        WHERE id = $4
+        RETURNING product_id, supplier_id, quantity, purchase_date`, [product_id, supplier_id, quantity, id]
+    )
+}
+
+export default {
+    createNewPurchaseOrder, getPurchaseOrder, findPurchaseOrderByID, deletePurchaseOrderById, updatePurchaseOrderById
 }

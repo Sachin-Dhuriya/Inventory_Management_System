@@ -3,7 +3,6 @@ import purchaseOrderService from '../services/purchaseOrderService.js';
 
 export const createPurchaseOrder = async (req, res) => {
     try {
-        console.log(req.body);
         let { error } = purchaseOrderSchema.validate(req.body);
         if (error) {
             return res.status(400).json({ message: error.details[0].message })
@@ -30,10 +29,10 @@ export const createPurchaseOrder = async (req, res) => {
 export const ViewAllPurchaseOrder = async (req, res) => {
     try {
         let data = await purchaseOrderService.getPurchaseOrder();
-        if(data.rowCount === 0){
-            return res.status(404).json({message: 'No Purchase Order Yet..!!!'})
+        if (data.rowCount === 0) {
+            return res.status(404).json({ message: 'No Purchase Order Yet..!!!' })
         }
-        res.status(200).json({message: 'All Purchase Order', data: data.rows})
+        res.status(200).json({ message: 'All Purchase Order', data: data.rows })
 
     } catch (err) {
         console.error(err);
@@ -42,17 +41,56 @@ export const ViewAllPurchaseOrder = async (req, res) => {
 }
 
 export const viewPurchaseOrder = async (req, res) => {
-        let id = req.params.id;
+    let id = req.params.id;
     try {
         let data = await purchaseOrderService.findPurchaseOrderByID(id);
-        if(data.rowCount === 0){
-            return res.status(404).json({message: 'Purchase Order does not exist..!!!'})
+        if (data.rowCount === 0) {
+            return res.status(404).json({ message: 'Purchase Order does not exist..!!!' })
         }
 
-        res.status(200).json({message: 'Purchase Order', data: data.rows[0]})
+        res.status(200).json({ message: 'Purchase Order', data: data.rows[0] })
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal Server Error..!!!!' })
     }
 }
 
+export const deletePurchaseOrder = async (req, res) => {
+    let id = req.params.id;
+    try {
+        let data = await purchaseOrderService.findPurchaseOrderByID(id);
+        if (data.rowCount === 0) {
+            return res.status(404).json({ message: 'Purchase Order does not exist..!!!' })
+        }
+
+        let deletedData = await purchaseOrderService.deletePurchaseOrderById(id)
+        res.status(200).json({ message: 'Purchase Order deleted successfully', data: deletedData.rows[0] })
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' })
+    }
+}
+
+export const updatePurchaseOrder = async (req, res) => {
+    let id = req.params.id;
+    try {
+        let poData = await purchaseOrderService.findPurchaseOrderByID(id);
+        if (poData.rowCount === 0) {
+            return res.status(404).json({ message: 'Purchase Order does not exist..!!!' })
+        }
+
+        let {error} = purchaseOrderSchema.validate(req.body);
+        if(error){
+            return res.status(400).json({message: error.details[0].message})
+        }
+        let{product_id, supplier_id, quantity} = req.body;
+        let data = await purchaseOrderService.updatePurchaseOrderById(id,product_id,supplier_id, quantity)
+
+        res.status(200).json({message: 'Purchase Order Updated Successfully..!!!',data: data.rows[0]})
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error..!!!' })
+    }
+}

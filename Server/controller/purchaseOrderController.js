@@ -1,5 +1,6 @@
 import purchaseOrderSchema from '../validators/purchaseOrderValidators.js'
 import purchaseOrderService from '../services/purchaseOrderService.js';
+import productService from '../services/productService.js'
 
 export const createPurchaseOrder = async (req, res) => {
     try {
@@ -11,8 +12,8 @@ export const createPurchaseOrder = async (req, res) => {
         let { product_id, supplier_id, quantity } = req.body;
 
         let data = await purchaseOrderService.createNewPurchaseOrder(product_id, supplier_id, quantity)
-
-        res.status(200).json({ message: 'Purchase Order Created', data: data.rows[0] })
+        
+        res.status(200).json({ message: 'Purchase Order Created', purchaseOrder: data.rows[0] })
     } catch (err) {
         console.error(err);
 

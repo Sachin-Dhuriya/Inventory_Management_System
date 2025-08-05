@@ -31,6 +31,16 @@ async function updateProductById(name, description, price, quantity, id) {
     )
 }
 
+async function updateProductQuantityById(quantity, id) {
+    return await pool.query(
+        `UPDATE products
+            SET quantity =$1
+            WHERE id = $2
+            RETURNING name, description, price, quantity`,
+        [quantity, id]
+    )
+}
+
 export default {
-    createNewProduct, viewAllProducts, viewProductById, deleteProductById, updateProductById
+    createNewProduct, viewAllProducts, viewProductById, deleteProductById, updateProductById,updateProductQuantityById
 }

@@ -73,9 +73,11 @@ This system provides secure **JWT-based authentication** and **role-based access
 
 | Method | Endpoint | Description | Access |
 |--------|----------|--------------|--------|
-| GET | `/api/sales` | List sales orders | Authenticated |
-| POST | `/api/sales` | Create sales order | Authenticated |
-| GET | `/api/sales/:id` | Sales order details | Authenticated |
+| GET | `/api/so` | List sales orders | Authenticated |
+| POST | `/api/so` | Create sales order | Authenticated |
+| GET | `/api/so/:id` | Sales order details | Authenticated |
+| PUT | `/api/so/:id` | Update Sales order details | Authenticated |
+| DELETE | `/api/so/:id` | Delete Sales order  | Authenticated |
 
 ---
 
@@ -135,17 +137,6 @@ This system provides secure **JWT-based authentication** and **role-based access
 | product_id | INTEGER REFERENCES `products`(id) | |
 | quantity | INT | |
 | sale_date | TIMESTAMP | |
-
----
-
-## ✅ Next Steps
-
-- ✔ Build controllers and route handlers for all modules.
-- ✔ Implement JWT authentication middleware.
-- ✔ Add role-based access control.
-- ✔ Validate input using `Joi` schemas.
-- ✔ Write unit tests for critical endpoints.
-- ✔ Document the API with Swagger or Postman.
 
 ---
 
